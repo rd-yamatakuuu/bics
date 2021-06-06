@@ -1,0 +1,2 @@
+module Admin::IdeaTagsHelper
+end

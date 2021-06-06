@@ -1,0 +1,2 @@
+class UserSpeciality < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class IdeaTag < ApplicationRecord
+end

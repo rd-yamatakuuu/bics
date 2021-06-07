@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+  @import "bootstrap";
+  @import 'font-awesome-sprockets';
+  @import 'font-awesome';
+
+.top-view {
+  background-image: image-url('top2.jpg');
+  background-size: cover;
+  height: 1000px;
+  opacity: 0.6;
+}
+
+.font {
+  font-family: 'Vollkorn', serif;
+}
+
+.top-text {
+  font-size: 200px;
+  color: #808080;
+  letter-spacing: 100px;
+  text-shadow: 10px 10px 10px #696969;
+}
+
+.top-text-height {
+  padding-top: 150px;
+}
+
+.top-button {
+  font-size: 100px;
+  background: #696969;
+  color: #000000;
+  border-radius: 1000px;
+  opacity: 0.9
+}

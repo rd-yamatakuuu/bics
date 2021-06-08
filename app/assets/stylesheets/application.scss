@@ -17,6 +17,29 @@
   @import 'font-awesome-sprockets';
   @import 'font-awesome';
 
+//whole
+.font {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+header {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.row {
+  margin-top: 30px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+//toppage
 .top-view {
   background-image: image-url('top2.jpg');
   background-size: cover;
@@ -24,9 +47,6 @@
   opacity: 0.6;
 }
 
-.font {
-  font-family: 'Vollkorn', serif;
-}
 
 .top-text {
   font-size: 200px;
@@ -45,4 +65,86 @@
   color: #000000;
   border-radius: 1000px;
   opacity: 0.9
+}
+
+//header
+.nav-whole {
+  list-style: none;
+  text-decoration: none;
+  padding-bottom: 20px;
+  background-color: #595857;
+}
+
+.nav-item {
+  float: left;
+  text-align: center;
+  font-size: 20px;
+  width: 200px;
+  padding: 0 30px;
+  display: block !important;
+  background-color: #595857;
+}
+
+.nav-bics {
+  font-size: 30px;
+  text-decoration: none;
+  padding-top: 10px;
+}
+
+.item-position li {
+  display: inline-block;
+}
+
+ul ul {
+  display: none;
+  position: absolute;
+  width: 100px;
+  left: 860px;
+  background-color: #595857;
+  padding: 0;
+}
+
+li span {
+  float: none;
+  height: 80px;
+  line-height: 80px;
+  padding: 0;
+	border-bottom: 1px solid #7F9492;
+}
+
+
+
+// 登録者ページItem#new
+.inputframe {
+    border: none;
+}
+.newitem {
+    input {
+        border: none;
+        outline: none;
+        border-bottom: solid;
+        background-color: transparent;
+    }
+    .length {
+        width: 400px;
+    }
+}
+
+
+//admin
+
+//index-design
+.bodydesign {
+
+  tr:nth-child(2n) {
+    background-color: #dcdcdc;
+  }
+
+  tr {
+    text-align: center;
+  }
+  th {
+    text-align: center;
+  }
+
 }

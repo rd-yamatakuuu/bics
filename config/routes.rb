@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   root 'homes#top'
 
   get 'home/about' => 'homes#about'
+  get 'home/start' => 'homes#start'
   get 'chat/:id' => 'public/chats#show', as: 'chat'
   get '/congratulations' => 'homes#congratulations'
 
   scope module: :public do
-    resources :users, only: [:show, :edit, :create, :update] do
+    resources :users, only: [:index, :show, :edit, :create, :update] do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'

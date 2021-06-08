@@ -19,3 +19,10 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// ドロップダウンメニュー
+$(function(){
+  $('#navi').children('li').hover(function(){
+    $(this).children('ul').stop().slideToggle(100);
+  });
+});

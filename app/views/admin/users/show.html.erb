@@ -1,0 +1,57 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Detail of <%= @user.name %></h2>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='mx-auto'>
+      <table class="table table-borderless">
+        <tr>
+          <td><label>Customer_ID</label></td>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <td><label>Name</label></td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td><label>Kana</label></td>
+          <td><%= @user.kana_name %></td>
+        </tr>
+        <tr>
+          <td><label>Postal Code</label></td>
+          <td><%= @user.postal_code %></td>
+        </tr>
+        <tr>
+          <td><label>Address</label></td>
+          <td><%= @user.address %></td>
+        </tr>
+        <tr>
+          <td><label>Status</label></td>
+          <td>
+            <% if @user.status == true %>
+              <span class='text-danger'>退会</span>
+            <% else %>
+              <span class='text-success'>有効</span>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><label>Position</label></td>
+          <td>
+            <% if @user.mentor_check == true %>
+              <span class='text-success'>Mentor</span>
+            <% else %>
+              <span class='text-secondary'>User</span>
+            <% end %>
+          </td>
+        </tr>
+         <td><%= link_to "Edit", edit_admin_user_path(@user.id), class: "btn btn-dark" %></td>
+         <td><%= link_to "Order List",admin_ideas_path(@user.id), class:"btn btn-secondary" %></td>
+      </table>
+    </div>
+  </div>
+</div>

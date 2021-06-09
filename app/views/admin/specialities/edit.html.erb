@@ -1,0 +1,23 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-4 offset-1'>
+      <h2>Edit of <%= @speciality.name %></h2>
+    </div>
+    <div class='col-md-8'></div>
+  </div>
+  <div class='row center'>
+    <div class='mx-auto newitem'>
+      <%= form_with model:@speciality, url: admin_speciality_path(@speciality), local:true do |f| %>
+        <div class='form-group'>
+          <label>name</label><br>
+          <%= f.text_field :name %>
+        </div>
+    </div>
+  </div>
+  <div class='row center'>
+    <div class='form-group center'>
+          <%= f.submit 'Save', class:'btn btn-outline-dark' %>
+    </div>
+      <% end %>
+  </div>
+</div>

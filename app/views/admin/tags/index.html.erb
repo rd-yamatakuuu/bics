@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 offset-md-1">
+      <h2>Tags</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 offset-md-1">
+      <table class='table'>
+        <thead class="thead-light bodydesign">
+           <tr>
+              <th class='text-white bg-dark'>Tag</th>
+              <th class='bg-dark'></th>
+              <th class='bg-dark'></th>
+           </tr>
+        </thead>
+        <tbody class='title bodydesign'>
+          <% @tags.each do |tag| %>
+            <tr>
+              <td><%= tag.tag_name %></td>
+              <td><%= link_to 'edit', edit_admin_tag_path(tag), class:'btn btn-sm btn-dark' %></td>
+              <td><%= link_to 'destroy', admin_tag_path(tag), method: :delete, data: {confirm: 'Are you sure ?'}, class:'btn btn-sm btn-danger' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div><%= paginate(@tags) %></div>
+
+    </div>
+
+    <div class='col-md-3 offset-md-3'>
+      <div class='newitem'>
+        <%= form_with model:@tag, url:admin_tags_path, method: :create, local:true do |f| %>
+
+          <div class='form-group newitem'>
+            <label>name</label><br>
+            <%= f.text_field :tag_name, autofocus: true %>
+          </div>
+      </div>
+      <div>
+          <div class='form-group center'>
+            <%= f.submit 'Create', class:'btn btn-dark' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

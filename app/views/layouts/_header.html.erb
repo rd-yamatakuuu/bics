@@ -4,9 +4,9 @@
 <nav>
   <% if user_signed_in? %>
     <ul class='nav-whole item-position text-light center' id='navi'>
-      <li class='nav-item'><%= link_to 'New Idea', new_idea_path, class:'text-light', :style => 'text-decoration:none' %></li>
-      <li class='nav-item'><%= link_to 'search', ideas_path, class:'text-light', :style => 'text-decoration:none' %></li>
-      <li class='nav-item'><%= link_to 'What is BICS?', home_about_path, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'New Idea', new_idea_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'search', ideas_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'What is BICS?', home_about_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><a class='fas fa-user text-light' href='#' ></a>
         <ul>
           <span class='nav-item'><%= link_to 'Mypage', user_path(current_user), 'data-turbolinks': false, class:'text-light font align-middle', :style => 'text-decoration:none' %></span>
@@ -20,13 +20,13 @@
       <li class='nav-item'><%= link_to 'search', admin_ideas_path, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><%= link_to 'Speciality', admin_specialities_path, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><%= link_to 'Tag', admin_tags_path, class:'text-light', :style => 'text-decoration:none' %></li>
-      <li class='nav-item'><%= link_to 'Logout', destroy_admin_session_path, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class:'text-light', :style => 'text-decoration:none' %></li>
     </ul>
   <% else %>
     <ul class='nav-whole item-position text-light center' id='navi'>
-      <li class='nav-item'><%= link_to 'Start', home_start_path, class:'text-light', :style => 'text-decoration:none' %></li>
-      <li class='nav-item'><%= link_to 'Search', ideas_path, class:'text-light', :style => 'text-decoration:none' %></li>
-      <li class='nav-item'><%= link_to 'What is BICS?', home_about_path, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'Start', home_start_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'Search', ideas_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'What is BICS?', home_about_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><a class='fas fa-user text-light' href='#' ></a>
         <ul>
           <span class='nav-item'><%= link_to 'Login', new_user_session_path, 'data-turbolinks': false, class:'text-light font align-middle', :style => 'text-decoration:none' %></span>

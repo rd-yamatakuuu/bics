@@ -7,7 +7,7 @@
   </div>
 
   <div class='row'>
-    <div class='mx-auto'>
+    <div class='col-md-8'>
       <table class="table table-borderless">
         <tr>
           <td><label>Title</label></td>
@@ -26,13 +26,44 @@
           <td><%= attachment_image_tag @idea, :presentation, :fill, 300, 200, format:'jpg', fallback:'no_image.png' %></td>
         </tr>
         <tr>
+          <td><%= @idea.user.name %></td>
+        </tr>
+        <tr>
           <td><label>Tag</label></td>
           <td>
             <%= @tag_list %>
           </td>
         </tr>
+        <% if current_user.id == @idea.user_id %>
          <td><%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-dark" %></td>
+        <% end %>
       </table>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-md-7'>
+      <div class="comments">
+        <p>コメント件数：<%= @idea.comments.count %></p>
+          <% @idea.comments.each do |comment| %>
+            <p><%= image_tag('no_image.png') %></p>
+            <%= comment.user.name %>
+            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+             <% if comment.user == current_user %>
+            <div class="comment-delete">
+              <%= link_to "削除", idea_comment_path(comment.idea, comment), method: :delete %>
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="new-comment">
+          <%= form_with(model:[@idea, @comment], local: true) do |f| %>
+            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
+    </div>
+    <div>
+      <%= render 'public/ideas/favorite', idea: @idea %>
     </div>
   </div>
 </div>

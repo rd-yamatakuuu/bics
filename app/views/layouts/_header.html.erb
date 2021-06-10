@@ -5,7 +5,7 @@
   <% if user_signed_in? %>
     <ul class='nav-whole item-position text-light center' id='navi'>
       <li class='nav-item'><%= link_to 'New Idea', new_idea_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
-      <li class='nav-item'><%= link_to 'search', ideas_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'search', search_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><%= link_to 'What is BICS?', home_about_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><a class='fas fa-user text-light' href='#' ></a>
         <ul>
@@ -25,7 +25,7 @@
   <% else %>
     <ul class='nav-whole item-position text-light center' id='navi'>
       <li class='nav-item'><%= link_to 'Start', home_start_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
-      <li class='nav-item'><%= link_to 'Search', ideas_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'Search', search_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><%= link_to 'What is BICS?', home_about_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><a class='fas fa-user text-light' href='#' ></a>
         <ul>

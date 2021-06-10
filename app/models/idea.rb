@@ -8,7 +8,8 @@ class Idea < ApplicationRecord
 
   attachment :icon
   attachment :presentation
-
+  
+  #タグ付け用の関数
   def save_tags(idea_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
     old_tags = current_tags - idea_tags
@@ -24,4 +25,9 @@ class Idea < ApplicationRecord
     end
   end
 
+  #いいね確認関数
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
+  
 end

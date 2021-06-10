@@ -10,11 +10,13 @@ class Public::IdeasController < ApplicationController
   
   def search
     @ideas = Idea.all
+
   end
   
   def show
     @idea = Idea.find(params[:id])
     @tag_list = @idea.tags.pluck(:tag_name).join(',')
+    @comment = Comment.new
   end
 
   def edit

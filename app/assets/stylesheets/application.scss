@@ -174,7 +174,7 @@ li span {
 //idea#index
 
 .card {
-  width: 500px;
+  width: 400px;
   height: 600px;
   margin-right: 100px;
   margin-bottom: 50px;
@@ -187,8 +187,9 @@ li span {
 }
 
 .card_textbox {
-  height: 150px;
+  height: 170px;
   padding: 10px 30px;
+  overflow: hidden;
 }
 
 .card_text_title {
@@ -199,8 +200,16 @@ li span {
 .card_text_content {
   padding: 20px 0;
   font-size: 20px;
+  
 }
 
+.card_info_user {
+  display:inline-block;
+}
+
+.card_user_box {
+  padding: 10px 30px;
+}
 .card_info_box {
   padding: 10px 30px;
 }

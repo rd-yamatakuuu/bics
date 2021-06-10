@@ -1,0 +1,38 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Detail of <%= @idea.title %></h2>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='mx-auto'>
+      <table class="table table-borderless">
+        <tr>
+          <td><label>Title</label></td>
+          <td><%= @idea.title %></td>
+        </tr>
+        <tr>
+          <td><label>Content</label></td>
+          <td><%= @idea.content %></td>
+        </tr>
+        <tr>
+          <td><label>Icon</label></td>
+          <td><%= attachment_image_tag @idea, :icon, :fill, 100, 100, format:'jpg', fallback:'no_image.png' %></td>
+        </tr>
+        <tr>
+          <td><label>Presentation</label></td>
+          <td><%= attachment_image_tag @idea, :presentation, :fill, 300, 200, format:'jpg', fallback:'no_image.png' %></td>
+        </tr>
+        <tr>
+          <td><label>Tag</label></td>
+          <td>
+            <%= @tag_list %>
+          </td>
+        </tr>
+         <td><%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-dark" %></td>
+      </table>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'home/about' => 'homes#about'
   get 'home/start' => 'homes#start'
+  get 'search' => 'ideas#search'
   get 'chat/:id' => 'public/chats#show', as: 'chat'
   get '/congratulations' => 'homes#congratulations'
 

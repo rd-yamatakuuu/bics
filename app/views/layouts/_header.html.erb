@@ -9,7 +9,7 @@
       <li class='nav-item'><%= link_to 'What is BICS?', home_about_path, 'data-turbolinks': false, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><a class='fas fa-user text-light' href='#' ></a>
         <ul>
-          <span class='nav-item'><%= link_to 'Mypage', user_path(current_user), 'data-turbolinks': false, class:'text-light font align-middle', :style => 'text-decoration:none' %></span>
+          <span class='nav-item'><%= link_to 'Mypage', users_path, 'data-turbolinks': false, class:'text-light font align-middle', :style => 'text-decoration:none' %></span>
           <span class='nav-item'><%= link_to 'Logout', destroy_user_session_path, method: :delete, 'data-turbolinks': false, class:'text-light font', :style => 'text-decoration:none' %></span>
         </ul>
       </li>

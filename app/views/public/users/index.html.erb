@@ -1,0 +1,41 @@
+<div class='container'>
+
+  <div class='row'>
+    <h2><%= current_user.name %> 's page</h2>
+  </div>
+
+  <div class='row'>
+    <%= link_to 'idea show', ideas_path, class:'text-success' %>
+  </div>
+  <div class='row'>
+    <%= link_to 'your profile', user_path(current_user), class:'text-secondary' %>
+  </div>
+  <div class='row'>
+    <h1>ideas</h1>
+  </div>
+
+  <div class='row center'>
+    <% @ideas.each do |idea| %>
+      <div class='card card_design'>
+        <%= link_to idea_path(idea), class:'text-dark', :style => 'text-decoration:none;' do %>
+          <div class='card_icon center'>
+            <%= attachment_image_tag idea, :icon, width:'500', fallback:'no_image.png' %>
+          </div>
+          <div class='card_textbox'>
+            <div class='card_text_title'>
+              <%= idea.title %>
+            </div>
+        <% end %>
+            <div class='card_text_content'>
+              <%= idea.content %>
+            </div>
+          </div>
+          <div class='card_info_box'>
+            <div class='card_info_content'>お気に入り</div>
+            <div class='card_info_content'>コメント数</div>
+            <div class='card_info_content'>評価</div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>

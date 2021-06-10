@@ -1,2 +1,44 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-4 offset-1'>
+      <h2>Edit of <%= @user.name %></h2>
+    </div>
+    <div class='col-md-8'></div>
+  </div>
+  <div class='row center'>
+    <div class='mx-auto newitem'>
+      <%= form_with model:@user, url: user_path(@user), local:true do |f| %>
+      
+        <div class='form-group'>
+          <label>Name</label><br>
+          <%= f.text_field :name %>
+        </div>
+        
+        <div class='form-group'>
+          <label>Kana</label><br>
+          <%= f.text_field :kana_name %>
+        </div>
+        
+        <div class='form-group'>
+          <label>Profile Image</label><br>
+          <%= f.attachment_field :profile_image %>
+        </div>
+        
+        <div class='form-group'>
+          <label>Postal Code</label><br>
+          <%= f.text_field :postal_code %>
+        </div>
+        
+        <div class='form-group'>
+          <label>Address</label><br>
+          <%= f.text_field :address %>
+        </div>
+    </div>
+  </div>
+  <div class='row center'>
+    <div class='form-group center'>
+          <%= f.submit 'Save', class:'btn btn-outline-dark' %>
+    </div>
+      <% end %>
+  </div>
+</div>

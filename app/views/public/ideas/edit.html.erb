@@ -8,7 +8,7 @@
 
   <div class='row'>
     <div class='mx-auto newidea'>
-      <%= form_with model:@idea, url: ideas_path, local:true do |f| %>
+      <%= form_with model:@idea, url: idea_path(@idea), local:true do |f| %>
         <div class='form-group'>
           <label for='inputTitle'>Title</label><br>
           <%= f.text_field :title, autofocus: true, size: '60', id:'inputTitle' %>
@@ -27,13 +27,13 @@
         </div>
         <div class='form-group'>
           <label>Tags</label><br>
-          <%= f.text_field :tag_ids, size: '60', placeholder:'タグ付けを複数行う場合は","で区切ってください' %>
+          <%= f.text_field :tag_ids, value:@tag_list, size: '60', placeholder:'タグ付けを複数行う場合は","で区切ってください' %>
         </div>
     </div>
   </div>
   <div class='row center'>
         <div class='form-group center'>
-          <%= f.submit 'Submit', class:'btn btn-lg btn-outline-dark' %>
+          <%= f.submit 'Update', class:'btn btn-lg btn-outline-dark' %>
         </div>
       <% end %>
   </div>

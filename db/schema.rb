@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_153943) do
+ActiveRecord::Schema.define(version: 2021_06_09_123528) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_06_06_153943) do
   end
 
   create_table "idea_tags", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "idea_id"
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

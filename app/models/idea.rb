@@ -8,7 +8,7 @@ class Idea < ApplicationRecord
 
   attachment :icon
   attachment :presentation
-  
+
   #タグ付け用の関数
   def save_tags(idea_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
@@ -29,5 +29,16 @@ class Idea < ApplicationRecord
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
-  
+
+  #reviewのindexページ分（平均値）
+  def review_index(comment)
+    arr = []
+    comment.each do |idea|
+      arr << idea.review
+    end
+    arr.sum.fdiv(arr.length).round(1)
+  end
+
+
+
 end

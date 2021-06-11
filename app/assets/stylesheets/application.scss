@@ -113,7 +113,34 @@ li span {
 	border-bottom: 1px solid #7F9492;
 }
 
+body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;  
+}
 
+main {
+  flex: 1;
+}
+
+footer {
+  background-color:#595857;
+  height: 220px;
+}
+
+.footer-box {
+  padding: 30px;
+}
+
+.footer-contact {
+  border: solid 1px;
+  padding: 10px;
+}
+
+.footer-sns {
+  padding: 5px;
+  
+}
 
 // 登録者ページItem#new
 .inputframe {
@@ -217,4 +244,10 @@ li span {
 .card_info_content {
     display: inline-block;
     margin-right: 40px;
+}
+
+
+//ユーザーのボタン一覧
+.user-info-box {
+  
 }

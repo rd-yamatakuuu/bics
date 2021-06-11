@@ -14,6 +14,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require jquery.raty.js
 
 //= require rails-ujs
 //= require activestorage
@@ -25,4 +26,14 @@ $(function(){
   $('#navi').children('li').hover(function(){
     $(this).children('ul').stop().slideToggle(100);
   });
+});
+
+
+//review(viewpage)
+$('.idea-review').raty({
+  readOnly: true,
+  score: function(){
+    return $(this).attr('data-score');
+  },
+  path: '/assets/'
 });

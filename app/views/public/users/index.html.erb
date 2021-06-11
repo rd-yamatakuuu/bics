@@ -1,10 +1,16 @@
 <div class='container'>
 
   <div class='row'>
-    <h2><%= current_user.name %> 's page</h2>
+    <h2>ようこそ <%= current_user.name %> さま！</h2>
   </div>
 
   <div class='row'>
+    <div class='col-md-4'>
+      <div>
+        <%= link_to 'pagetop', users_path, class:'' %>
+      </div>
+      <div></div>
+    </div>
     <%= link_to 'idea show', ideas_path, class:'text-success' %>
   </div>
   <div class='row'>

@@ -27,9 +27,19 @@
           <div class='card_info_box'>
             <div class='card_info_content fas fa-heart'><%= idea.favorites.count %></div>
             <div class='card_info_content fas fa-comment'><%= idea.comments.count %></div>
-            <div class='card_info_content'>評価</div>
+            <div class='card_info_content idea-review' data-score='<%= idea.review_index(idea.comments) %>'></div>
           </div>
       </div>
     <% end %>
   </div>
 </div>
+
+<script>
+$('.idea-review').raty({
+  readOnly: true,
+  score: function(){
+    return $(this).attr('data-score');
+  },
+  path: '/assets/'
+});
+</script>

@@ -10,7 +10,6 @@ class Public::IdeasController < ApplicationController
   
   def search
     @ideas = Idea.all
-
   end
   
   def show

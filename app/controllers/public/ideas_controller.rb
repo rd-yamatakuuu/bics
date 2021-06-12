@@ -14,6 +14,7 @@ class Public::IdeasController < ApplicationController
   
   def show
     @idea = Idea.find(params[:id])
+    @user = @idea.user
     @tag_list = @idea.tags.pluck(:tag_name).join(',')
     @comment = Comment.new
   end

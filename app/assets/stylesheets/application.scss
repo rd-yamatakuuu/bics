@@ -101,6 +101,7 @@ ul ul {
   position: absolute;
   width: 100px;
   left: 860px;
+  z-index: 5;
   background-color: #595857;
   padding: 0;
 }
@@ -249,5 +250,16 @@ footer {
 
 //ユーザーのボタン一覧
 .user-info-box {
-  
+
+}
+
+.user-info-abst {
+  font-size: 23px;
+  border-bottom: solid 2px;
+  padding: 20px 10px 2px;
+}
+
+.user-info-content {
+  padding: 10px 0px;
+  padding-left: 30px;
 }

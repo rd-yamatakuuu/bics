@@ -10,7 +10,7 @@
       <li class='nav-item'><a class='fas fa-user text-light' href='#' ></a>
         <ul>
           <span class='nav-item'><%= link_to 'Mypage', users_path, 'data-turbolinks': false, class:'text-light font align-middle', :style => 'text-decoration:none' %></span>
-          <span class='nav-item'><%= link_to 'Logout', destroy_user_session_path, method: :delete, 'data-turbolinks': false, class:'text-light font', :style => 'text-decoration:none' %></span>
+          <span class='nav-item'><%= link_to 'Logout', destroy_user_session_path, method: :delete, 'data-turbolinks': false, class:'text-light font', :style => 'text-decoration:none', data: {confirm: 'Are you sure?' } %></span>
         </ul>
       </li>
     </ul>

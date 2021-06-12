@@ -15,6 +15,10 @@ class Public::CommentsController < ApplicationController
     comment.destroy
     redirect_to idea_path(idea)
   end
+  
+  def index
+    @comments = current_user.comments
+  end
 
 
   private

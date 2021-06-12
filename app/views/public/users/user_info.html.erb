@@ -9,55 +9,8 @@
   </div>
 
   <div class='row'>
-    <div class='col-md-3 user-info-box'>
 
-      <div class='user-info-abst'>マイページ</div>
-      <div class='user-info-content'>
-        <%= link_to 'マイページTOP', users_path, class:'text-dark', :style => 'text-decoration:none;' %>
-      </div>
-
-      <div class='user-info-abst'>登録情報</div>
-      <div class='user-info-content'>
-        <%= link_to '登録情報変更', user_path(@user), class:'text-dark', :style => 'text-decoration:none;'  %>
-      </div>
-
-      <div class='user-info-abst'>フォロー</div>
-      <div class='user-info-content'>
-        <%= link_to 'フォロー一覧', user_followings_path(@user), class:'text-dark', :style => 'text-decoration:none;' %>
-      </div>
-
-      <div class='user-info-content'>
-        <%= link_to 'フォロワー一覧', user_followers_path(@user), class:'text-dark', :style => 'text-decoration:none;' %>
-      </div>
-
-      <div class='user-info-abst'>お気に入り</div>
-      <div class='user-info-content'>
-        <%= link_to 'お気に入り一覧', idea_favorites_path(@user), class:'text-dark', :style => 'text-decoration:none;' %>
-      </div>
-
-      <div class='user-info-abst'>コメント</div>
-      <div class='user-info-content'>
-        <%= link_to '過去のコメント', idea_comments_path(@user), class:'text-dark', :style => 'text-decoration:none;' %>
-      </div>
-
-      <div class='user-info-abst'>チャット</div>
-      <div class='user-info-content'>
-        <%= link_to 'チャット', chat_path(@user.id), class:'text-dark', :style => 'text-decoration:none;' %>
-      </div>
-
-      <div class='user-info-abst'>ログアウト</div>
-      <div>
-        <div class='user-info-content'>
-          <%= link_to 'ログアウト', destroy_user_session_path, class:'text-dark', :style => 'text-decoration:none;', data: {confirm: 'Are you sure?' } %>
-        </div>
-      </div>
-
-      <div class='user-info-abst'>退会</div>
-      <div>
-        <div class='user-info-content'>退会手続き</div>
-      </div>
-
-    </div>
+    <%= render 'public/users/sidebar', user: @user %>
 
     <div class='col-md-7 offset-md-2'>
       <% @ideas.each do |idea| %>

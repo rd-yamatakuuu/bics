@@ -1,0 +1,42 @@
+<div class='container'>
+  <div class='row'>
+    <div class='mx-auto'>
+      <h2 id='room'><%= @user.name %>さんとのチャット</h2>
+      
+      <table class='message table'>
+        <thead>
+          <tr>
+            <th><%= current_user.name %></th>
+            <th><%= @user.name %></th>
+          </tr>
+        </thead>
+        <% @chats.each do |chat| %>
+          <% if chat.user_id == current_user.id %>
+          <tbody>
+            <tr>
+              <th>
+                <p style='text-align: left;'><%= chat.message %></p>
+              </th>
+              <th></th>
+            </tr>
+          </tbody>
+          <% else %>
+          <tbody>
+            <tr>
+              <th></th>
+              <th>
+                <p style='text-align: right;'><%= chat.message %></p>
+              </th>
+            </tr>
+          </tbody>
+          <% end %>
+        <% end %>
+      </table>
+      
+      <%= form_with model: @chat do |f| %>
+        <%= f.text_field :message %>
+        <%= f.hidden_field :room_id %>
+      <% end %>
+    </div>
+  </div>
+</div>

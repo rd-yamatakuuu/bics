@@ -2,7 +2,7 @@
   <div class='row'>
     <div>
       <% @users.each do |user| %>
-        <%= link_to user.name, users_path(user), class:''%>
+        <%= link_to user.name, user_info_user_path(user), class:''%>
       <% end %>
     </div>
   </div>

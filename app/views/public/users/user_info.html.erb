@@ -1,0 +1,102 @@
+<div class='container'>
+
+  <div class='row'>
+    <% if @user == current_user %>
+      <h3>ようこそ <%= @user.name %> さま！</h3>
+    <% else %>
+      <h3><%= @user.name %> のページ</h3>
+    <% end %>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-3 user-info-box'>
+
+      <div class='user-info-abst'>マイページ</div>
+      <div class='user-info-content'>
+        <%= link_to 'マイページTOP', users_path, class:'text-dark', :style => 'text-decoration:none;' %>
+      </div>
+
+      <div class='user-info-abst'>登録情報</div>
+      <div class='user-info-content'>
+        <%= link_to '登録情報変更', user_path(@user), class:'text-dark', :style => 'text-decoration:none;'  %>
+      </div>
+
+      <div class='user-info-abst'>フォロー</div>
+      <div class='user-info-content'>
+        <%= link_to 'フォロー一覧', user_followings_path(@user), class:'text-dark', :style => 'text-decoration:none;' %>
+      </div>
+
+      <div class='user-info-content'>
+        <%= link_to 'フォロワー一覧', user_followers_path(@user), class:'text-dark', :style => 'text-decoration:none;' %>
+      </div>
+
+      <div class='user-info-abst'>お気に入り</div>
+      <div class='user-info-content'>
+        <%= link_to 'お気に入り一覧', idea_favorites_path(@user), class:'text-dark', :style => 'text-decoration:none;' %>
+      </div>
+
+      <div class='user-info-abst'>コメント</div>
+      <div class='user-info-content'>
+        <%= link_to '過去のコメント', idea_comments_path(@user), class:'text-dark', :style => 'text-decoration:none;' %>
+      </div>
+
+      <div class='user-info-abst'>チャット</div>
+      <div class='user-info-content'>
+        <%= link_to 'チャット', chat_path(@user.id), class:'text-dark', :style => 'text-decoration:none;' %>
+      </div>
+
+      <div class='user-info-abst'>ログアウト</div>
+      <div>
+        <div class='user-info-content'>
+          <%= link_to 'ログアウト', destroy_user_session_path, class:'text-dark', :style => 'text-decoration:none;', data: {confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+
+      <div class='user-info-abst'>退会</div>
+      <div>
+        <div class='user-info-content'>退会手続き</div>
+      </div>
+
+    </div>
+
+    <div class='col-md-7 offset-md-2'>
+      <% @ideas.each do |idea| %>
+        <div class='card card_design'>
+          <%= link_to idea_path(idea), class:'text-dark', :style => 'text-decoration:none;' do %>
+            <div class='card_icon center'>
+              <%= attachment_image_tag idea, :icon, width:'500', fallback:'no_image.png' %>
+            </div>
+            <div class='card_textbox'>
+              <div class='card_text_title'>
+                <%= idea.title %>
+              </div>
+          <% end %>
+              <div class='card_text_content'>
+                <%= idea.content %>
+              </div>
+            </div>
+            <div class='card_user_box'>
+              <div class='card_info_user'>作成者:</div>
+              <div class='card_info_user'><%= link_to idea.user.name, user_path(idea.user_id), class:'text-dark', :style => 'text-decoration:none;' %></div>
+            </div>
+            <div class='card_info_box'>
+              <div class='card_info_content fas fa-heart'><%= idea.favorites.count %></div>
+              <div class='card_info_content fas fa-comment'><%= idea.comments.count %></div>
+              <div class='card_info_content idea-review' data-score='<%=idea.review_index(idea.comments) %>'></div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+$('.idea-review').empty();
+  $('.idea-review').raty({
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

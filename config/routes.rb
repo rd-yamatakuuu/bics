@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+      member do
+        get :user_info
+      end
     end
     resources :ideas, only: [:index, :show, :new, :edit, :create, :update, :destroy] do
       resources :comments, only: [:create, :destroy, :index]

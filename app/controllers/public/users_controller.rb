@@ -4,6 +4,11 @@ class Public::UsersController < ApplicationController
     @ideas = current_user.ideas
     @user = current_user
   end
+  
+  def user_info
+    @user = User.find(params[:id])
+    @ideas = @user.ideas
+  end
 
   def show
     @user = User.find(params[:id])

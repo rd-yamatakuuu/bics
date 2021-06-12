@@ -7,11 +7,11 @@ class Public::IdeasController < ApplicationController
   def index
     @ideas = current_user.ideas
   end
-  
+
   def search
     @ideas = Idea.all
   end
-  
+
   def show
     @idea = Idea.find(params[:id])
     @user = @idea.user

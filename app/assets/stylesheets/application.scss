@@ -82,6 +82,7 @@ body {
   font-size: 20px;
   width: 200px;
   padding: 0 30px;
+  position: relative;
   display: block !important;
   background-color: #595857;
 }
@@ -100,7 +101,7 @@ ul ul {
   display: none;
   position: absolute;
   width: 100px;
-  left: 860px;
+  left: 0;
   z-index: 5;
   background-color: #595857;
   padding: 0;

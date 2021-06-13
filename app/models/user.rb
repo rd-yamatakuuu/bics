@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :user_specialities, dependent: :destroy
+  has_many :specialities, through: :user_specialities
   has_many :chats, dependent: :destroy
   has_many :chat_rooms, dependent: :destroy
   has_many :rooms, through: :chat_rooms

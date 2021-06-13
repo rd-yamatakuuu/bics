@@ -6,7 +6,7 @@
     <div class='col-md-8'></div>
   </div>
   <div class='row center'>
-    <div class='mx-auto newitem'>
+    <div class='mx-auto newidea'>
       <%= form_with model:@user, url: user_path(@user), local:true do |f| %>
       
         <div class='form-group'>
@@ -17,6 +17,11 @@
         <div class='form-group'>
           <label>Kana</label><br>
           <%= f.text_field :kana_name %>
+        </div>
+        
+        <div class='form-group'>
+          <label>introduction</label><br>
+          <%= f.text_area :introduction, size: '40x6' %>
         </div>
         
         <div class='form-group'>

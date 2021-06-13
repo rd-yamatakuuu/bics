@@ -7,11 +7,12 @@ class Public::UsersController < ApplicationController
   
   def user_info
     @user = User.find(params[:id])
-    @ideas = @user.ideas
+    @ideas = @user.ideas.page(params[:page]).per(5)
   end
 
   def show
     @user = User.find(params[:id])
+    @specialities = @user.specialities
   end
 
   def edit
@@ -31,6 +32,6 @@ class Public::UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :kana_name, :profile_image, :postal_code, :address)
+    params.require(:user).permit(:name, :kana_name, :introduction, :profile_image, :postal_code, :address)
   end
 end

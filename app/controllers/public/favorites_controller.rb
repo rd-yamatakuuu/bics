@@ -17,7 +17,11 @@ class Public::FavoritesController < ApplicationController
   end
   
   def index
-    @favorites = current_user.favorites
+    #@idea = Idea.find(params[:idea_id])
+    @user = current_user
+    @favorites = @user.favorites
+    #@user = current_user
+    #@user = User.find(params[:id])
   end
   
 end

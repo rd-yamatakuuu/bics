@@ -117,7 +117,7 @@ li span {
 body {
   display: flex;
   flex-flow: column;
-  min-height: 100vh;  
+  min-height: 100vh;
 }
 
 main {
@@ -140,7 +140,7 @@ footer {
 
 .footer-sns {
   padding: 5px;
-  
+
 }
 
 // 登録者ページItem#new
@@ -181,6 +181,28 @@ footer {
 
 
 //public
+
+
+// pagination
+.pagination-design {
+
+  /*ページネーション自体のデザイン*/
+  .pagination>li>a {
+    border: none;
+    color: #000000;
+  }
+
+  /* 表示しているページ番号のデザイン */
+  .pagination>.active>a {
+    background: #000000;
+    border-radius: 15px;
+  }
+
+  /*ホバー時のデザイン*/
+  .pagination>li>a:hover {
+    border-radius: 15px;
+  }
+}
 
 //idea#new
 .newidea {
@@ -228,7 +250,7 @@ footer {
 .card_text_content {
   padding: 20px 0;
   font-size: 20px;
-  
+
 }
 
 .card_info_user {
@@ -262,4 +284,29 @@ footer {
 .user-info-content {
   padding: 10px 0px;
   padding-left: 30px;
+}
+
+//フォロー，フォロワー，お気に入り
+
+.thead-color {
+  border-bottom: 3px solid #a0d8ef ;
+  border-top: 3px solid #a0d8ef;
+}
+
+//table(コンテンツの内容がはみでないように）
+
+.tabledesign {
+  width: 800px;
+  table-layout: fixed;
+
+  tr {
+    text-align: center;
+  }
+  th {
+    text-align: center;
+    overflow: hidden;
+    padding-right: 100px;
+  }
+
+
 }

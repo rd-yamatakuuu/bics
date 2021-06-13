@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_ideas_path
     when User
-      ideas_path
+      search_path
     end
   end
 
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     when :admin
       new_admin_session_path
     when :user
-      ideas_path
+      search_path
     end
   end
 
@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     if resource_class == User
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :kana_name, :postal_code, :address, :profile_image_id])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :kana_name, :introduction, :postal_code, :address, :profile_image_id])
     end
   end
 

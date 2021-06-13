@@ -5,11 +5,12 @@ class Public::IdeasController < ApplicationController
   end
 
   def index
-    @ideas = current_user.ideas
+    #@ideas = current_user.ideas
+    @ideas = Idea.all
   end
 
   def search
-    @ideas = Idea.all
+    @ideas = Idea.page(params[:page]).per(8)
   end
 
   def show

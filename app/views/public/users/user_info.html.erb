@@ -1,45 +1,50 @@
 <div class='container'>
 
   <div class='row'>
-    <% if @user == current_user %>
-      <h3>ようこそ <%= @user.name %> さま！</h3>
-    <% else %>
-      <h3><%= @user.name %> のページ</h3>
-    <% end %>
+    <%= render 'public/users/username', user: @user %>
   </div>
 
   <div class='row'>
 
     <%= render 'public/users/sidebar', user: @user %>
 
-    <div class='col-md-7 offset-md-2'>
-      <% @ideas.each do |idea| %>
-        <div class='card card_design'>
-          <%= link_to idea_path(idea), class:'text-dark', :style => 'text-decoration:none;' do %>
-            <div class='card_icon center'>
-              <%= attachment_image_tag idea, :icon, width:'500', fallback:'no_image.png' %>
-            </div>
-            <div class='card_textbox'>
-              <div class='card_text_title'>
-                <%= idea.title %>
+    <% if @ideas.empty? %>
+      <div class='col-md-6 offset-md-2 h3'>
+        アイデアを投稿しましょう！
+      </div>
+    <% else %>
+      <div class='col-md-7 offset-md-2'>
+        <% @ideas.each do |idea| %>
+          <div class='card card_design'>
+            <%= link_to idea_path(idea), class:'text-dark', :style => 'text-decoration:none;' do %>
+              <div class='card_icon center'>
+                <%= attachment_image_tag idea, :icon, width:'500', fallback:'no_image.png' %>
               </div>
-          <% end %>
-              <div class='card_text_content'>
-                <%= idea.content %>
+              <div class='card_textbox'>
+                <div class='card_text_title'>
+                  <%= idea.title %>
+                </div>
+            <% end %>
+                <div class='card_text_content'>
+                  <%= idea.content %>
+                </div>
               </div>
-            </div>
-            <div class='card_user_box'>
-              <div class='card_info_user'>作成者:</div>
-              <div class='card_info_user'><%= link_to idea.user.name, user_path(idea.user_id), class:'text-dark', :style => 'text-decoration:none;' %></div>
-            </div>
-            <div class='card_info_box'>
-              <div class='card_info_content fas fa-heart'><%= idea.favorites.count %></div>
-              <div class='card_info_content fas fa-comment'><%= idea.comments.count %></div>
-              <div class='card_info_content idea-review' data-score='<%=idea.review_index(idea.comments) %>'></div>
-            </div>
-        </div>
-      <% end %>
-    </div>
+              <div class='card_user_box'>
+                <div class='card_info_user'>作成者:</div>
+                <div class='card_info_user'><%= link_to idea.user.name, user_path(idea.user_id), class:'text-dark', :style => 'text-decoration:none;' %></div>
+              </div>
+              <div class='card_info_box'>
+                <div class='card_info_content fas fa-heart'><%= idea.favorites.count %></div>
+                <div class='card_info_content fas fa-comment'><%= idea.comments.count %></div>
+                <div class='card_info_content idea-review' data-score='<%=idea.review_index(idea.comments) %>'></div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class='center pagination-design'>
+    <p><%= paginate @ideas %></p>
   </div>
 </div>
 

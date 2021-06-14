@@ -17,9 +17,30 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :followed_user, through: :followed, source: :follower
+  
+  
 
   attachment :profile_image
+  
+  def speciality_check(user, speciality_id)
+    user.specialities.include?(speciality_id)
+  end
 
+
+  def speciality_check(user_specialities)
+    current_specialities = self.specialities.pluck(:name) unless self.specialities.nil?
+    old_specialities = current_specialities - user_specialities
+    new_specialities = user_specialities - current_specialities
+
+    old_specialities.each do |old_speciality|
+      self.specialities.delete Speciality.find_by(name: old_specialities)
+    end
+
+    new_specialities.each do |new_speciality|
+      speciality = Speciality.find_or_create_by(name: new_speciality)
+      self.specialities << speciality
+    end
+  end
 
 
   #follow関係

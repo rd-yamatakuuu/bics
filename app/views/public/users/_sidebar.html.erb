@@ -5,8 +5,11 @@
     <%= link_to 'マイページTOP', user_info_user_path(current_user), class:'text-dark', :style => 'text-decoration:none;' %>
   </div>
 
+  <div class='user-info-abst'>登録情報</div>
+  <div class='user-info-content'>
+    <%= link_to 'プロフィール', profile_user_path(user), class:'text-dark', :style => 'text-decoration:none;' %>
+  </div>
   <% if user == current_user %>
-    <div class='user-info-abst'>登録情報</div>
     <div class='user-info-content'>
       <%= link_to '登録情報変更', user_path(user), class:'text-dark', :style => 'text-decoration:none;'  %>
     </div>

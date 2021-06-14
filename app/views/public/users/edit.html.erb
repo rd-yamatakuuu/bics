@@ -20,6 +20,11 @@
         </div>
         
         <div class='form-group'>
+          <label>Email</label><br>
+          <%= f.email_field :email %>
+        </div>
+        
+        <div class='form-group'>
           <label>introduction</label><br>
           <%= f.text_area :introduction, size: '40x6' %>
         </div>
@@ -27,6 +32,11 @@
         <div class='form-group'>
           <label>Profile Image</label><br>
           <%= f.attachment_field :profile_image %>
+        </div>
+        
+        <div class='form-group'>
+          <label>Speciality</label><br>
+          <%= f.collection_check_boxes :speciality_ids, Speciality.all, :id, :name, {}, {class:'collection_box'} %>
         </div>
         
         <div class='form-group'>

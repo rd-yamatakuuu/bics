@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
       member do
         get :user_info
+        get :profile
       end
     end
     resources :ideas, only: [:index, :show, :new, :edit, :create, :update, :destroy] do

@@ -7,6 +7,9 @@
   </div>
 
   <div class='row'>
+
+    <%= render 'public/users/sidebar', user: @user %>
+
     <div class='col-md-4'>
       <div class='center'>
         <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format:'jpeg', fallback:'no_profile.jpg' %>
@@ -23,12 +26,20 @@
           <td><%= @user.kana_name %></td>
         </tr>
         <tr>
+          <td><label>Email</label></td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
           <td><label>Introduction</label></td>
           <td><%= @user.introduction %></td>
         </tr>
         <tr>
           <td><label>Speciality</label></td>
-          <td><%= @specialities.name %></td>
+          <td>
+            <% @user.specialities.each do |speciality| %>
+              <%= speciality.name %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td><label>Postal Code</label></td>

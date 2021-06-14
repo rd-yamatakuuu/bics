@@ -318,6 +318,20 @@ footer {
 
 //users#profile
 
-. profile_position {
+.profile_position {
+
+  .profile_title {
+    padding-top: 40px;
+    padding-bottom: 15px;
+    font-size: 30px;
+    color: #007b43;
+  }
+}
+
+.profile_tab {
+  padding-top: 40px;
   
+  span {
+    padding-right: 20px;
+  }
 }

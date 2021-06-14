@@ -10,37 +10,51 @@
     
     <%= render 'public/users/sidebar', user: @user %>
     
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-md-8 offset-md-1 profile_position'>
       <div class='center'>
         <%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format:'jpeg', fallback:'no_profile.jpg' %>
       </div>
       <div>
-        <label>Name</label>
-        <text><%= @user.name %> (<%= @user.kana_name %>)</text>
+        <div class='center profile_title'>Name</div>
+        <div class='center'><%= @user.name %> (<%= @user.kana_name %>)</div>
       </div>
       <div>
-        <td><label>Introduction</label></td>
-        <td><%= @user.introduction %></td>
+        <div class='center profile_title'>Introduction</div>
+        <div class='center'><%= @user.introduction %></div>
       </div>
       <div>
-        <td><label>Speciality</label></td>
-        <td><%= @specialities.name %></td>
-      </div>
-      <div>
-        <td><label>Position</label></td>
-        <td>
-          <% if @user.mentor_check == true %>
-            <span class='text-success'>Mentor</span>
-          <% else %>
-            <span class='text-secondary'>User</span>
+        <div class='center profile_title'>得意分野</div>
+        <div class='center'>
+          <% @user.specialities.each do |speciality| %>
+              <%= speciality.name %>
           <% end %>
-        </td>
+        </div>
+      </div>
+      <div>
+        <div class='center profile_title'>ポジション</div>
+        <div class='center'>
+          <% if @user.mentor_check == true %>
+            <span class='text-success'>一般</span>
+          <% else %>
+            <span class='text-dark'>メンター</span>
+          <% end %>
+        </div>
+      </div>
+      <div class='profile_tab center'>
+        <% if current_user != @user %>
+          <span>  
+            <%= link_to @user.name+'とチャット', chat_path(@user.id), class:'btn btn-outline-dark' %>
+          </span>
+          <span>
+            <% if current_user.following?(@user) %>
+              <%= link_to 'フォロー中', user_relationships_path(@user.id), method: :delete, class:'btn btn-outline-dark' %>
+            <% else %>
+              <%= link_to 'フォローする', user_relationships_path(@user.id), method: :post, class:'btn btn-outline-dark' %>
+            <% end %>
+          </span>
+          
+        <% end %>
       </div>
     </div>
-  </div>
-  <div>
-    <% if current_user != @user %>
-      <%= link_to 'chatを始める', chat_path(@user.id) %>
-    <% end %>
   </div>
 </div>

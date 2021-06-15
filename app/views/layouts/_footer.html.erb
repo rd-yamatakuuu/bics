@@ -8,7 +8,9 @@
       <text class='text-light h5 '>@BICS, inc.</text>
     </div>
     <div class='col-md-3 offset-md-2 footer-box'>
-      <div class='text-light h3 footer-contact center'>Contact us</div>
+      <div class='text-light h3 footer-contact center'>
+        <%= link_to 'Contact us', new_contact_path, class:'text-white', :style => 'text-decoration:none;' %>
+      </div>
     </div>
     <div class='col-md-2 offset-md-1 d-flex align-items-end'>
       <div class='fab fa-facebook fa-2x text-light footer-sns'></div>

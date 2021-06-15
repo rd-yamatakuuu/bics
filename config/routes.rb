@@ -27,7 +27,11 @@ Rails.application.routes.draw do
     end
     resources :chats, only: [:create]
     resources :tags, only: [:index]
-    resources :contacts, only: [:new, :create]
+    resources :contacts, only: [:new, :create] do
+      collection do
+        get :done
+      end
+    end
     resources :rooms, only: [:create, :update, :destroy]
   end
 

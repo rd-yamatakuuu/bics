@@ -39,7 +39,7 @@ class Idea < ApplicationRecord
     arr.sum.fdiv(arr.length).round(1)
   end
 
-  def chart_review(reviews)
+  def chart_review_value(reviews)
     arr1 = []
     reviews.each do |comment|
       arr1 << comment.review
@@ -49,6 +49,19 @@ class Idea < ApplicationRecord
     arr2 << arr1.group_by(&:itself).map{ |k, v| [k, v.count] }.to_h
     x = arr2[0]
     y = x.values
+    y
+  end
+  
+  def chart_review_key(reviews)
+    arr1 = []
+    reviews.each do |comment|
+      arr1 << comment.review
+    end
+    arr1 = arr1.sort.reverse
+    arr2 = []
+    arr2 << arr1.group_by(&:itself).map{ |k, v| [k, v.count] }.to_h
+    x = arr2[0]
+    y = x.keys
     y
   end
 

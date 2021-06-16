@@ -89,7 +89,7 @@
       <%= render 'public/ideas/favorite', idea: @idea %>
     </div>
     <div>
-      <%= @idea.chart_review(@comments).each do |u| %>
+      <%= @idea.chart_review_key(@comments).each do |u| %>
        <%= u %>
       <% end %>
     </div>
@@ -117,18 +117,23 @@ var ctx = document.getElementById('Chart');
 var chart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['5', '4.5', '4', '3.5', '3', 'Orange'],
+        labels: <%= @idea.chart_review_key(@comments) %>,
         datasets: [
           {
             label: '# of Votes',
-            data: <%= @idea.chart_review(@comments) %>,
+            data: <%= @idea.chart_review_value(@comments) %>,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                '#ff1493',
+                '#ff0000',
+                '#ffa500',
+                '#ffff00',
+                '#7cfc00',
+                '#008000',
+                '#0000ff',
+                '#000080',
+                '',
+                ''
+                
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',

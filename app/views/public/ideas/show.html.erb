@@ -2,17 +2,13 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h2>Detail of <%= @idea.title %></h2>
+      <h2><%= @idea.title %></h2>
     </div>
   </div>
 
   <div class='row'>
     <div class='col-md-8'>
       <table class="table table-borderless">
-        <tr>
-          <td><label>Title</label></td>
-          <td><%= @idea.title %></td>
-        </tr>
         <tr>
           <td><label>Content</label></td>
           <td><%= @idea.content %></td>
@@ -85,13 +81,8 @@
           <% end %>
         </div>
     </div>
-    <div>
-      <%= render 'public/ideas/favorite', idea: @idea %>
-    </div>
-    <div>
-      <%= @idea.chart_review_key(@comments).each do |u| %>
-       <%= u %>
-      <% end %>
+    <div class='favorite<%= @idea.id %>'>
+      <%= render 'public/favorites/favorite', idea: @idea %>
     </div>
   </div>
 </div>
@@ -134,14 +125,6 @@ var chart = new Chart(ctx, {
                 '',
                 ''
                 
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
         }]

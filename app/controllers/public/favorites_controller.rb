@@ -5,7 +5,7 @@ class Public::FavoritesController < ApplicationController
     @favorite = Favorite.new(idea_id: @idea.id)
     @favorite.user_id = current_user.id
     @favorite.save
-    redirect_to idea_path(@idea)
+    #redirect_to idea_path(@idea)
   end
 
   def destroy
@@ -13,7 +13,7 @@ class Public::FavoritesController < ApplicationController
     @favorite = Favorite.find_by(idea_id: @idea.id)
     @favorite.user_id = current_user.id
     @favorite.destroy
-    redirect_to idea_path(@idea)
+    #redirect_to idea_path(@idea)
   end
   
   def index

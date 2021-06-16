@@ -10,10 +10,10 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
-    idea = Idea.find(params[:id])
+    #@idea = Idea.find(params[:id])
     comment = Comment.find_by(id: params[:id], idea_id: params[:idea_id])
     comment.destroy
-    redirect_to idea_path(idea)
+    redirect_to idea_path(params[:idea_id])
   end
   
   def index

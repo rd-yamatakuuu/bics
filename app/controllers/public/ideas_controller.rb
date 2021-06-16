@@ -18,6 +18,7 @@ class Public::IdeasController < ApplicationController
     @user = @idea.user
     @tag_list = @idea.tags.pluck(:tag_name).join(',')
     @comment = Comment.new
+    @comments = @user.comments
   end
 
   def edit

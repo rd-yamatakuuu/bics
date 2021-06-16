@@ -2,87 +2,111 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h2><%= @idea.title %></h2>
+      <h1>
+        <%= @idea.title %>
+        <% if @idea.user == current_user %>
+          ( <%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-dark" %> )
+        <% end %>
+      </h1>
     </div>
   </div>
 
   <div class='row'>
-    <div class='col-md-8'>
-      <table class="table table-borderless">
-        <tr>
-          <td><label>Content</label></td>
-          <td><%= @idea.content %></td>
-        </tr>
-        <tr>
-          <td><label>Icon</label></td>
-          <td><%= attachment_image_tag @idea, :icon, :fill, 100, 100, format:'jpg', fallback:'no_image.png' %></td>
-        </tr>
-        <tr>
-          <td><label>Presentation</label></td>
-          <td><%= attachment_image_tag @idea, :presentation, :fill, 300, 200, format:'jpg', fallback:'no_image.png' %></td>
-        </tr>
-        <tr>
-          <td><%= @idea.user.name %></td>
-          <td>
-            <% if current_user != @user %>
-              <% if current_user.following?(@user) %>
-                <%= link_to 'フォロー中', user_relationships_path(@user.id), method: :delete %>
-              <% else %>
-                <%= link_to 'フォローする', user_relationships_path(@user.id), method: :post %>
-              <% end %>
+      <div class='col-md-9 offset-md-1'>
+        <text class='h5'>作者：<%= link_to @idea.user.name, profile_user_path(@user), class:'text-dark', :style => 'text-decoration:none;' %></text>
+        <text class='name_tag_list h5'>
+          <% if current_user != @user %>
+            <% if current_user.following?(@user) %>
+              (<%= link_to 'フォロー中', user_relationships_path(@user.id), method: :delete %>)
+            <% else %>
+              (<%= link_to 'フォローする', user_relationships_path(@user.id), method: :post %>)
             <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><label>Tag</label></td>
-          <td>
-            <%= @tag_list %>
-          </td>
-        </tr>
-        <% if current_user.id == @idea.user_id %>
-         <td><%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-dark" %></td>
-        <% end %>
-      </table>
+          <% end %>
+        </text>
+        <text class='favorite<%= @idea.id %> name_tag_list h5'>
+          <%= render 'public/favorites/favorite', idea: @idea %>
+        </text>
+        <text class='name_tag_list h5'>タグ：<%= @tag_list %></text>
+      </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-5 offset-md-1'>
+      <div>
+        <%= attachment_image_tag @idea, :icon, height:'300', format:'jpg', fallback:'no_image.png' %></td>
+      </div>
+    </div>
+    <div class='col-md-5'>
+      <div class='center h2'>
+        Content
+      </div>
+      <div class='idea_show_content'>
+        <%= @idea.content %>
+      </div>
     </div>
   </div>
-  <div class='row'>
-    <div class='col-md-7'>
-      <div class="comments">
-        <p>コメント件数：<%= @idea.comments.count %></p>
-          <% @idea.comments.each do |comment| %>
-            <p><%= image_tag('no_image.png') %></p>
-            <%= comment.user.name %>
-            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-            <div class='idea-review' data-score='<%=comment.review %>'></div>
-             <% if comment.user == current_user %>
-            <div class="comment-delete">
-              <%= link_to "削除", idea_comment_path(comment.idea, comment), method: :delete %>
-            </div>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="new-comment">
-          <%= form_with(model:[@idea, @comment], local: true) do |f| %>
-            <div id='review_stars'>
-              <label>評価</label>
-              <%= f.hidden_field :review_stars, id: :review_star %>
-              <script>
-                $('#review_stars').raty({
-                  starOn: "<%= asset_path('star-on.png') %>",
-                  starOff: "<%= asset_path('star-off.png') %>",
-                  starHalf: "<%= asset_path('star-half.png') %>",
-                  scoreName: 'comment[review]',
-                  half: true,
-                });
-              </script>
-            </div>
-            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-            <%= f.submit "送信する" %>
-          <% end %>
-        </div>
+
+  <div class='row center'>
+    <div>
+      <%= attachment_image_tag @idea, :presentation, height:'500', format:'jpg', fallback:'no_image.png' %>
     </div>
-    <div class='favorite<%= @idea.id %>'>
-      <%= render 'public/favorites/favorite', idea: @idea %>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-5 offset-md-1'>
+      <div class='center'>
+        <p>コメント件数：<%= @idea.comments.count %></p>
+      </div>
+      <div>
+        <% @comments.each do |comment| %>
+          <div class='eachcomment'>
+            <span class='comment_tab'><%= attachment_image_tag comment.user, :profile_image, :fill, 50, 50, format:'jpg', fallback:'no_image.png' %></span>
+            <text class='comment_tab'><%= comment.user.name %></text>
+            <text class='comment_tab'><%= comment.created_at.strftime('%Y/%m/%d') %></text>
+            <text class='idea-review' data-score='<%=comment.review %>'></text>
+            <% if comment.user == current_user %>
+              <text class="comment_tab">
+                <%= link_to "削除", idea_comment_path(comment.idea, comment), method: :delete %>
+              </text>
+            <% end %>
+            <div class='main_comment'><%= comment.comment %></div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="new-comment">
+        <%= form_with(model:[@idea, @comment], local: true) do |f| %>
+          <div id='review_stars'>
+            <label>評価</label>
+            <%= f.hidden_field :review_stars, id: :review_star %>
+            <script>
+              $('#review_stars').raty({
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                scoreName: 'comment[review]',
+                half: true,
+              });
+            </script>
+          </div>
+          <%= f.text_area :comment, size:'45x4',placeholder: "コメントをここに" %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <% if @comments.exists? %>
+        <div class='center h5'>
+          <text>
+            評価グラフ
+          </text>
+        </div>
+        <div class='center'>
+          <div style='width:600px; height:600px;'>
+            <canvas id="Chart"></canvas>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -124,7 +148,7 @@ var chart = new Chart(ctx, {
                 '#000080',
                 '',
                 ''
-                
+
             ],
             borderWidth: 1
         }]

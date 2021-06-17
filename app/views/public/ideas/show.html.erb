@@ -5,7 +5,9 @@
       <h1>
         <%= @idea.title %>
         <% if @idea.user == current_user %>
-          ( <%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-dark" %> )
+          ( <%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-dark" %>
+          <%= link_to 'Destroy', idea_path(@idea), method: :delete, class:'btn btn-danger', data: {confirm: 'Are you sure?'} %>
+          )
         <% end %>
       </h1>
     </div>

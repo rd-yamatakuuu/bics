@@ -54,16 +54,17 @@ class Public::IdeasController < ApplicationController
     tag_list = params[:idea][:tag_ids].split(',')
     if @idea.update(idea_params)
       @idea.save_tags(tag_list)
-      redirect_to idea_path(@idea)
+      redirect_to edit_idea_path(@idea), notice: '更新に成功しました．'
     else
       render :edit
     end
   end
 
   def destroy
+    @user = current_user
     @idea = Idea.find(params[:id])
     @idea.destroy
-    redirect_to ideas_path
+    redirect_to user_info_user_path(@user), notice: '削除に成功しました．'
   end
 
   private

@@ -37,7 +37,7 @@ class Public::UsersController < ApplicationController
     end
     if @user.update(user_params)
       @user.speciality_check(new_specialities)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: '情報の更新に成功しました．'
     else
       render :edit
     end

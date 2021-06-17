@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='mx-auto'>
       <h2 id='room'><%= @user.name %>さんとのチャット</h2>
-      
+
       <table class='message table'>
         <thead>
           <tr>
@@ -32,8 +32,8 @@
           <% end %>
         <% end %>
       </table>
-      
-      <%= form_with model: @chat do |f| %>
+
+      <%= form_with model: @chat, url:chats_path, local: true do |f| %>
         <%= f.text_field :message %>
         <%= f.hidden_field :room_id %>
       <% end %>

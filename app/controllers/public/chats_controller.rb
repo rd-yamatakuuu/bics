@@ -8,19 +8,20 @@ class Public::ChatsController < ApplicationController
     if chat_rooms.nil?
       @room = Room.new
       @room.save
-      ChatRoom.create(user_id: @user.id, room_id: @room.id)
       ChatRoom.create(user_id: current_user.id, room_id: @room.id)
+      ChatRoom.create(user_id: @user.id, room_id: @room.id)
     else
       @room = chat_rooms.room
     end
     
     @chats = @room.chats
-    @chat = Chat.new(room_id: @room_id)
+    @chat = Chat.new(room_id: @room.id)
   end
   
   def create
     @chat = current_user.chats.new(chat_params)
     @chat.save
+    redirect_to request.referer
   end
   
   private

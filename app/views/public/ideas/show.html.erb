@@ -26,7 +26,11 @@
         <text class='favorite<%= @idea.id %> name_tag_list h5'>
           <%= render 'public/favorites/favorite', idea: @idea %>
         </text>
-        <text class='name_tag_list h5'>タグ：<%= @tag_list %></text>
+        <% if @tag_list.empty? %>
+          <text>タグ：なし</text>
+        <% else %>
+          <text class='name_tag_list h5'>タグ：<%= @tag_list %></text>
+        <% end %>
       </div>
   </div>
 

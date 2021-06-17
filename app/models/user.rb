@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_many :user_specialities, dependent: :destroy
   has_many :specialities, through: :user_specialities
-  has_many :chats, dependent: :destroy
-  has_many :chat_rooms, dependent: :destroy
+  has_many :chats
+  has_many :chat_rooms
   has_many :rooms, through: :chat_rooms
   has_many :comments, dependent: :destroy
   has_many :ideas, dependent: :destroy

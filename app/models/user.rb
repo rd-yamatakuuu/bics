@@ -18,7 +18,14 @@ class User < ApplicationRecord
   has_many :following_user, through: :follower, source: :followed
   has_many :followed_user, through: :followed, source: :follower
   
+  validates :name, presence: true
+  validates :kana_name, presence: true
+  validates :introduction, presence: true
+  validates :postal_code, presence: true
+  validates :address, presence: true
   
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
   attachment :profile_image
   

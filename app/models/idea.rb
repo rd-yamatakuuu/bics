@@ -5,8 +5,9 @@ class Idea < ApplicationRecord
   has_many :idea_tags, dependent: :destroy
   has_many :tags, through: :idea_tags
   belongs_to :user
-
-  validates :review, numericality: {greter_than: 0 }
+  
+  validates :title, presence: true
+  validates :content, presence: true, length: {maximum: 500}
 
   attachment :icon
   attachment :presentation

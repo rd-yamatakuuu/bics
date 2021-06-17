@@ -42,6 +42,17 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
+  
+  def unsubscribe
+    @user = User.find(params[:id])
+  end 
+  
+  def withdraw
+    @user = User.find(params[:id])
+    @user.update(status: true)
+    reset_session
+    redirect_to root_path
+  end
 
 
   private

@@ -62,5 +62,10 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
+  
+  #退会した場合のログイン制御
+  def active_for_authentication?
+    super && (self.status == false)
+  end
 
 end

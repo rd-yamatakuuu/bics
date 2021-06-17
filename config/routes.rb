@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'rank_rev' => 'public/ideas#rank_rev'
 
   scope module: :public do
+    get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    put 'users/:id/withdraw' => 'users#withdraw', as: 'users_withdraw'
     resources :users, only: [:index, :show, :edit, :create, :update] do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'

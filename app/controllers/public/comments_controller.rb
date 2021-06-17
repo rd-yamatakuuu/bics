@@ -17,7 +17,8 @@ class Public::CommentsController < ApplicationController
   end
   
   def index
-    @comments = current_user.comments
+    @user = current_user
+    @comments = current_user.comments.order('created_at DESC').page(params[:page]).per(15)
   end
 
 

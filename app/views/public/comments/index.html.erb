@@ -1,9 +1,42 @@
 <div class='container'>
   <div class='row'>
-    <div>
-      <% @comments.each do |comment| %>
-        <%= comment.comment %>
-      <% end %>
+    <%= render 'public/users/username', user: @user %>
+  </div>
+  <div class='row'>
+    <h3 class='col-md-3 offset-md-3'>お気に入り一覧</h3>
+  </div>
+  <div class='row'>
+    
+    <%= render 'public/users/sidebar', user: @user %>
+    
+  <% if @comments.empty? %>
+    <div class='col-md-4 offset-md-2'>
+      お気に入りのアイデアがありません
     </div>
+  <% else %>    
+    <div class='col-md-7 offset-md-1'>
+      <table class='table table-borderless tabledesign'>
+        <thead class='thead-color'>
+          <tr>
+            <th>icon</th>
+            <th>title</th>
+            <th>content</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |comment| %>
+            <tr>
+              <th><%= attachment_image_tag comment.idea, :icon, :fill, 60, 60, format:'jpeg', fallback:'no_image.png', size:'60x60' %></th>
+              <th><%= link_to comment.idea.title, idea_path(comment.idea), class:'text-dark', :style => 'text-decoration:none;' %></th>
+              <th><div style='overflow:hidden;'><%= comment.comment %></div></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+  </div>
+  <div class='row center pagination-design'>
+    <%= paginate @comments %>
   </div>
 </div>

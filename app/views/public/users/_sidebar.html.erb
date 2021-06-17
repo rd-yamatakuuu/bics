@@ -26,7 +26,7 @@
   <% if user == current_user %>
     <div class='user-info-abst'>お気に入り</div>
     <div class='user-info-content'>
-      <%= link_to 'お気に入り一覧', idea_favorites_path(user.id), class:'text-dark', :style => 'text-decoration:none;' %>
+      <%= link_to 'お気に入り一覧', favorites_index_path(user.id), class:'text-dark', :style => 'text-decoration:none;' %>
     </div>
     
     <div class='user-info-abst'>コメント</div>

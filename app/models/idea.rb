@@ -6,6 +6,8 @@ class Idea < ApplicationRecord
   has_many :tags, through: :idea_tags
   belongs_to :user
 
+  validates :review, numericality: {greter_than: 0 }
+
   attachment :icon
   attachment :presentation
 
@@ -39,6 +41,7 @@ class Idea < ApplicationRecord
     arr.sum.fdiv(arr.length).round(1)
   end
 
+  #グラフ生成
   def chart_review_value(reviews)
     arr1 = []
     reviews.each do |comment|
@@ -51,7 +54,7 @@ class Idea < ApplicationRecord
     y = x.values
     y
   end
-  
+
   def chart_review_key(reviews)
     arr1 = []
     reviews.each do |comment|
@@ -64,7 +67,5 @@ class Idea < ApplicationRecord
     y = x.keys
     y
   end
-
-
 
 end

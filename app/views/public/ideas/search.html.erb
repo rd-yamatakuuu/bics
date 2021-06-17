@@ -1,41 +1,69 @@
-<div class='container'>
+<div class='container-fluid'>
 
   <div class='row'>
-    <h2>All Idea</h2>
-  </div>
-
-  <div class='row center'>
-    <% @ideas.each do |idea| %>
-      <div class='card card_design'>
-        <%= link_to idea_path(idea), class:'text-dark', :style => 'text-decoration:none;' do %>
-          <div class='card_icon center'>
-            <%= attachment_image_tag idea, :icon, width:'400', fallback:'no_image.png' %>
-          </div>
-          <div class='card_textbox'>
-            <div class='card_text_title'>
-              <%= idea.title %>
+    <div class='col-md-2 offset-md-1'>
+      <div class='sidebar_rank_design'>
+        <div>
+          <h2>ランキング</h2>
+        </div>
+        <div class='sidebar_rank'>
+          <div class='sidebar_rank_each h5'><%= link_to 'いいね数', rank_fav_path, class:'text-dark' %></div>
+          <div class='sidebar_rank_each h5'><%= link_to 'コメント数', rank_com_path, class:'text-dark' %></div>
+          <div class='sidebar_rank_each h5'><%= link_to '評価値', rank_rev_path, class:'text-dark' %></div>
+        </div>
+        <div>
+          <h2 class='sidebar_rank'>タグランキング</h2>
+        </div>
+        <div class='sidebar_rank'>
+          <% @ideas_rank.each.with_index(1) do |tag, i| %>
+            <div class='sidebar_rank_each h5'>
+              <text class='fas fa-crown'></text><%= i %>位 <%= tag.tag_name %>
             </div>
-        <% end %>
-            <div class='card_text_content'>
-              <%= idea.content %>
-            </div>
-          </div>
-          <div class='card_user_box'>
-            <div class='card_info_user'>作成者:</div>
-            <div class='card_info_user'><%= link_to idea.user.name, user_path(idea.user_id), class:'text-dark', :style => 'text-decoration:none;' %></div>
-          </div>
-          <div class='card_info_box'>
-            <div class='card_info_content fas fa-heart'><%= idea.favorites.count %></div>
-            <div class='card_info_content fas fa-comment'><%= idea.comments.count %></div>
-            <div class='card_info_content idea-review' data-score='<%= idea.review_index(idea.comments) %>'></div>
-          </div>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+    </div>
+
+  <div class='col-md-8 offset-md-1'>
+    <div>
+      <h2>新着アイデア</h2>
+    </div>
+
+
+    <div>
+      <% @ideas.each do |idea| %>
+        <div class='card card_design'>
+          <%= link_to idea_path(idea), class:'text-dark', :style => 'text-decoration:none;' do %>
+            <div class='card_icon center'>
+              <%= attachment_image_tag idea, :icon, width:'400', fallback:'no_image.png' %>
+            </div>
+            <div class='card_textbox'>
+              <div class='card_text_title'>
+                <%= idea.title %>
+              </div>
+          <% end %>
+              <div class='card_text_content'>
+                <%= idea.content %>
+              </div>
+            </div>
+            <div class='card_user_box'>
+              <div class='card_info_user'>作成者:</div>
+              <div class='card_info_user'><%= link_to idea.user.name, user_path(idea.user_id), class:'text-dark', :style => 'text-decoration:none;' %></div>
+              <div class='card_info_user card_info_user_date'><%= idea.created_at.strftime('%Y/%m/%d') %></div>
+            </div>
+            <div class='card_info_box'>
+              <div class='card_info_content fas fa-heart'><%= idea.favorites.count %></div>
+              <div class='card_info_content fas fa-comment'><%= idea.comments.count %></div>
+              <div class='card_info_content idea-review' data-score='<%= idea.review_index(idea.comments) %>'></div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+    <div class='row center pagination-design'>
+      <p><%= paginate @ideas %></p>
+    </div>
   </div>
-  <div class='row center pagination-design'>
-    <p><%= paginate @ideas %></p>
-  </div>
-</div>
+  
 
 <script>
 $('.idea-review').empty();

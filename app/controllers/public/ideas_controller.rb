@@ -5,12 +5,23 @@ class Public::IdeasController < ApplicationController
   end
 
   def index
-    #@ideas = current_user.ideas
-    @ideas = Idea.all
   end
 
   def search
-    @ideas = Idea.page(params[:page]).per(8)
+    @ideas = Idea.order('created_at DESC').page(params[:page]).per(8)
+    @ideas_rank = Tag.find(IdeaTag.group(:tag_id).order(Arel.sql('count(idea_id) desc')).limit(3).pluck(:tag_id))
+  end
+
+  def rank_fav
+    @ideas = Idea.find(Favorite.group(:idea_id).order(Arel.sql('count(idea_id) desc')).limit(5).pluck(:idea_id))
+  end
+
+  def rank_com
+    @ideas = Idea.find(Comment.group(:idea_id).order(Arel.sql('count(user_id) desc')).limit(5).pluck(:idea_id))
+  end
+
+  def rank_rev
+    @ideas = Idea.find(Comment.group(:idea_id).order(Arel.sql('AVG(review) desc')).limit(5).pluck(:idea_id))
   end
 
   def show

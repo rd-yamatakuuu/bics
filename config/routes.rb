@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get 'search' => 'public/ideas#search'
   get 'chat/:id' => 'public/chats#show', as: 'chat'
   get '/congratulations' => 'homes#congratulations'
-  get 'idea_favorites' => 'public/favorites#index'
+  get 'favorites_index' => 'public/favorites#index'
+  get 'rank_fav' => 'public/ideas#rank_fav'
+  get 'rank_com' => 'public/ideas#rank_com'
+  get 'rank_rev' => 'public/ideas#rank_rev'
 
   scope module: :public do
     resources :users, only: [:index, :show, :edit, :create, :update] do
@@ -24,7 +27,7 @@ Rails.application.routes.draw do
     end
     resources :ideas, only: [:index, :show, :new, :edit, :create, :update, :destroy] do
       resources :comments, only: [:create, :destroy, :index]
-      resource :favorites, only: [:create, :destroy, :index]
+      resource :favorites, only: [:create, :destroy]
     end
     resources :chats, only: [:create]
     resources :tags, only: [:index]

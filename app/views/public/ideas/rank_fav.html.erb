@@ -1,0 +1,22 @@
+<div class='container'>
+
+  <div class='row'>
+    <h2>いいね数ランキング</h2>
+  </div>
+  
+  <%= render 'public/ideas/rank', ideas: @ideas %>
+
+</div>
+
+<script>
+$('.idea-review').empty();
+$('.idea-review').raty({
+  readOnly: true,
+  starOn: "<%= asset_path('star-on.png') %>",
+  starOff: "<%= asset_path('star-off.png') %>",
+  starHalf: "<%= asset_path('star-half.png') %>",
+  score: function(){
+    return $(this).attr('data-score');
+  },
+});
+</script>

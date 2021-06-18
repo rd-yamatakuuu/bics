@@ -18,7 +18,6 @@
 
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 
 // ドロップダウンメニュー
@@ -36,4 +35,14 @@ $('.idea-review').raty({
     return $(this).attr('data-score');
   },
   path: '/assets/'
+});
+
+//home_about
+
+$(function() {
+  $('.slide-pic').slick({
+    dots: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  });
 });

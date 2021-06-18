@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  
+  before_action :authenticate_user!
 
   def create
     idea = Idea.find(params[:idea_id])

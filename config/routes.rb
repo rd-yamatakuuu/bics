@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     end
     resources :chats, only: [:create]
     resources :tags, only: [:index]
-    resources :contacts, only: [:new, :create] do
+    resources :contacts, only: [:index, :create] do
       collection do
         get :done
       end

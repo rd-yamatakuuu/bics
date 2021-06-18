@@ -1,4 +1,6 @@
 class Public::UsersController < ApplicationController
+  
+  before_action :authenticate_user!, except: [:index]
 
   def index
     @ideas = current_user.ideas

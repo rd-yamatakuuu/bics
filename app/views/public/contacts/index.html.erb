@@ -1,7 +1,9 @@
 <div class='container'>
   <div class='row center'>
     <div class='newidea'>
-      <%= form_with model:@contact, local: true do |f| %>
+      <%= form_with model:@contact, url:contacts_path, local: true do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        
         <div>
           <label>Name</label><br>
           <%= f.text_field :name , autofocus: true %>

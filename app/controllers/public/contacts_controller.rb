@@ -1,16 +1,17 @@
 class Public::ContactsController < ApplicationController
 
-  def new
+
+  def index
     @contact = Contact.new
   end
 
   def create
     @contact = Contact.new(contact_params)
-    if @contact.save!
+    if @contact.save
       ContactMailer.send_mail(@contact).deliver
       redirect_to done_contacts_path
     else
-      render :new
+      render :index
     end
   end
 

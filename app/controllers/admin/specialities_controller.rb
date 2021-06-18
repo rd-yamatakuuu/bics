@@ -1,4 +1,6 @@
 class Admin::SpecialitiesController < ApplicationController
+  
+  before_action :authenticate_admin!
 
   def index
     @specialities = Speciality.page(params[:page]).per(10)

@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        kana_name: かな
+        postal_code: 郵便番号(7桁)
+        address: 住所
+        email: メールアドレス
+        status: 会員情報
+        password: パスワード
+        introduction: 自己紹介
+        mentor_check: メンターチェック
+      speciality:
+        name: 分野名
+      tag:
+        tag_name: タグ名
+      idea:
+        title: タイトル
+        content: 内容

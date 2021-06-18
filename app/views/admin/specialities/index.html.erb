@@ -1,4 +1,5 @@
 <div class="container">
+  <%= render 'layouts/flash' %>
   <div class="row">
     <div class="col-md-3 offset-md-1">
       <h2>Specialities</h2>
@@ -25,13 +26,14 @@
         </tbody>
       </table>
       
-      <div><%= paginate(@specialities) %></div>
+      <div class='center pagination-design'><%= paginate(@specialities) %></div>
       
     </div>
     
     <div class='col-md-3 offset-md-3'>
       <div class='newitem'>
         <%= form_with model:@speciality, url:admin_specialities_path, method: :create, local:true do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
   
           <div class='form-group newitem'>
             <label>name</label><br>

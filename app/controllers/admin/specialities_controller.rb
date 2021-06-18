@@ -12,8 +12,9 @@ class Admin::SpecialitiesController < ApplicationController
   def create
     @speciality = Speciality.new(speciality_params)
     if @speciality.save
-      redirect_to admin_specialities_path
+      redirect_to admin_specialities_path, notice: '作成に成功しました．'
     else
+      @specialities = Speciality.page(params[:page]).per(10)
       render :index
     end
   end
@@ -21,7 +22,7 @@ class Admin::SpecialitiesController < ApplicationController
   def update
     @speciality = Speciality.find(params[:id])
     if @speciality.update(speciality_params)
-      redirect_to admin_specialities_path
+      redirect_to admin_specialities_path, notice: '更新に成功しました．'
     else
       render :index
     end
@@ -30,7 +31,7 @@ class Admin::SpecialitiesController < ApplicationController
   def destroy
     @speciality = Speciality.find(params[:id])
     @speciality.destroy
-    redirect_to admin_specialities_path
+    redirect_to admin_specialities_path, notice: '削除に成功しました．'
   end
 
   private

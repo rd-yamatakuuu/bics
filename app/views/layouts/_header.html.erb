@@ -17,7 +17,7 @@
   <% elsif admin_signed_in? %>
     <ul class='nav-whole item-position text-light center' id='navi'>
       <li class='nav-item'><%= link_to 'All User', admin_users_path, class:'text-light', :style => 'text-decoration:none' %></li>
-      <li class='nav-item'><%= link_to 'search', admin_ideas_path, class:'text-light', :style => 'text-decoration:none' %></li>
+      <li class='nav-item'><%= link_to 'search', search_path, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><%= link_to 'Speciality', admin_specialities_path, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><%= link_to 'Tag', admin_tags_path, class:'text-light', :style => 'text-decoration:none' %></li>
       <li class='nav-item'><%= link_to 'Logout', destroy_admin_session_path, method: :delete, class:'text-light', :style => 'text-decoration:none' %></li>

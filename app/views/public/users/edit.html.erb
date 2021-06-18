@@ -8,6 +8,7 @@
   <div class='row center'>
     <div class='mx-auto newidea'>
       <%= form_with model:@user, url: user_path(@user), local:true do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
       
         <div class='form-group'>
           <label>Name</label><br>

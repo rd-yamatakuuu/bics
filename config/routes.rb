@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'finders/finder'
   devise_for :admins
   devise_for :users
 

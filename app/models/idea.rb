@@ -68,5 +68,14 @@ class Idea < ApplicationRecord
     y = x.keys
     y
   end
+  
+  #検索
+  def self.looks(references, words)
+    if references == 'perfect_match'
+      @idea = Idea.where('title LIKE ?', "#{words}")
+    else
+      @idea = Idea.where('title LIKE ?', "%#{words}%")
+    end
+  end
 
 end

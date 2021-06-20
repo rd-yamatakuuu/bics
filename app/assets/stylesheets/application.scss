@@ -164,10 +164,19 @@ footer {
   padding: 5px;
 }
 
+//検索フォーム
+.reference {
+    border: none;
+    outline: none;
+    border-bottom: solid;
+    background-color: transparent;
+}
+
 // 登録者ページItem#new
 .inputframe {
     border: none;
 }
+
 .newitem {
     input {
         border: none;

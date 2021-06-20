@@ -67,5 +67,14 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (self.status == false)
   end
+  
+  #検索
+  def self.looks(references, words)
+    if references == 'perfect_match'
+      @user = User.where('name LIKE ?', "#{words}")
+    else
+      @user = User.where('name LIKE ?', "%#{words}%")
+    end
+  end
 
 end

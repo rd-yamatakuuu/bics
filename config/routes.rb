@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'finders/finder'
   devise_for :admins
   devise_for :users
 
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   get 'rank_fav' => 'public/ideas#rank_fav'
   get 'rank_com' => 'public/ideas#rank_com'
   get 'rank_rev' => 'public/ideas#rank_rev'
+  get 'finder' => 'public/finders#finder'
 
   scope module: :public do
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'

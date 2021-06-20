@@ -1,0 +1,129 @@
+<div class='container'>
+
+  <div class='row'>
+    <%= form_with url: finder_path, method: :get, local:true do |f| %>
+      <%= f.select :range, options_for_select([['ユーザー', 'User'], ['専門分野', 'Speciality'], ['アイデア', 'Idea'], ['タグ', 'Tag']]), {},  {class:'btn btn-sm btn-outline-dark'} %>
+      <%= f.select :reference, options_for_select([['完全一致', 'perfect_match'], ['部分一致', 'parital_match']]), {}, {class:'btn btn-sm btn-outline-dark'} %>
+      <%= f.text_field :word, class:'reference' %>
+      <%= f.submit '検索', class:'btn btn-sm btn-dark' %>
+    <% end %>
+  </div>
+  
+  <div class='row center'>
+    <div>
+      <h2>検索結果</h2>
+    </div>
+  </div>
+
+
+  <div class='row center'>
+
+    <% if @range == 'User' %>
+    
+      <table class='table'>
+        <thead class="thead-light bodydesign">
+           <tr>
+              <th class='text-white bg-dark'>Name</th>
+              <th class='text-white bg-dark'>Email</th>
+              <th class='text-white bg-dark'>Status</th>
+           </tr>
+        </thead>
+        <tbody class='title bodydesign'>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user.name, profile_user_path(user), :style => 'color:black;'%></td>
+              <td><%= user.email %></td>
+                <% if user.status == true %>
+                  <th><span>退会</span></th>
+                <% else %>
+                  <th><font color="#008000">有効</font></th>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    <% elsif  @range == 'Idea' %>
+
+        <% @ideas.each do |idea| %>
+          <div class='card card_design'>
+            <%= link_to idea_path(idea), class:'text-dark', :style => 'text-decoration:none;' do %>
+              <div class='card_icon center'>
+                <%= attachment_image_tag idea, :icon, width:'400', fallback:'no_image.png' %>
+              </div>
+              <div class='card_textbox'>
+                <div class='card_text_title'>
+                  <%= idea.title %>
+                </div>
+            <% end %>
+                <div class='card_text_content'>
+                  <%= idea.content %>
+                </div>
+              </div>
+              <div class='card_user_box'>
+                <div class='card_info_user'>作成者:</div>
+                <div class='card_info_user'><%= link_to idea.user.name, user_path(idea.user_id), class:'text-dark', :style => 'text-decoration:none;' %></div>
+                <div class='card_info_user card_info_user_date'><%= idea.created_at.strftime('%Y/%m/%d') %></div>
+              </div>
+              <div class='card_info_box'>
+                <div class='card_info_content fas fa-heart'><%= idea.favorites.count %></div>
+                <div class='card_info_content fas fa-comment'><%= idea.comments.count %></div>
+                <div class='card_info_content idea-review' data-score='<%= idea.review_index(idea.comments) %>'></div>
+              </div>
+          </div>
+        <% end %>
+
+    <% elsif @range == 'Tag' %>
+    
+    <div class='col-md-3'>
+      <table class='table'>
+        <thead class="thead-light bodydesign">
+           <tr>
+              <th class='text-white bg-dark'>Tag</th>
+           </tr>
+        </thead>
+        <tbody class='title bodydesign'>
+          <% @tags.each do |tag| %>
+            <tr>
+              <td><%= tag.tag_name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+    <% else %>
+    <div class='col-md-3'>
+      <table class='table'>
+        <thead class="thead-light bodydesign">
+           <tr>
+              <th class='text-white bg-dark'>Name</th>
+           </tr>
+        </thead>
+        <tbody class='title bodydesign'>
+          <% @specialities.each do |speciality| %>
+            <tr>
+              <td><%= speciality.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+      
+    <% end %>
+
+  </div>
+
+
+<script>
+$('.idea-review').empty();
+$('.idea-review').raty({
+  readOnly: true,
+  starOn: "<%= asset_path('star-on.png') %>",
+  starOff: "<%= asset_path('star-off.png') %>",
+  starHalf: "<%= asset_path('star-half.png') %>",
+  score: function(){
+    return $(this).attr('data-score');
+  },
+});
+</script>

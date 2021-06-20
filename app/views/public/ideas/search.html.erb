@@ -1,12 +1,14 @@
 <div class='container-fluid'>
 
   <div class='row'>
-    <%= form_with url: finder_path, method: :get, local:true do |f| %>
-      <%= f.select :range, options_for_select([['ユーザー', 'User'], ['専門分野', 'Speciality'], ['アイデア', 'Idea'], ['タグ', 'Tag']]) %>
-      <%= f.select :reference, options_for_select([['完全一致', 'perfect_match'], ['部分一致', 'partial_match']]) %>
-      <%= f.text_field :word %>
-      <%= f.submit '検索' %>
-    <% end %>
+    <div class='col-md-5 offset-md-1'> 
+      <%= form_with url: finder_path, method: :get, local:true do |f| %>
+        <%= f.select :range, options_for_select([['ユーザー', 'User'], ['専門分野', 'Speciality'], ['アイデア', 'Idea'], ['タグ', 'Tag']]), {},  {class:'btn btn-sm btn-outline-dark'} %>
+        <%= f.select :reference, options_for_select([['完全一致', 'perfect_match'], ['部分一致', 'parital_match']]), {}, {class:'btn btn-sm btn-outline-dark'} %>
+        <%= f.text_field :word, class:'reference' %>
+        <%= f.submit '検索', class:'btn btn-sm btn-dark' %>
+      <% end %>
+    </div>
   </div>
 
   <div class='row'>

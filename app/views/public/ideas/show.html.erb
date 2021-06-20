@@ -39,7 +39,7 @@
   <div class='row'>
     <div class='col-md-5 offset-md-1'>
       <div>
-        <%= attachment_image_tag @idea, :icon, height:'300', format:'jpg', fallback:'no_image.png' %></td>
+        <%= attachment_image_tag @idea, :icon, height:'300', format:'jpeg', fallback:'no_image.png' %></td>
       </div>
     </div>
     <div class='col-md-5'>
@@ -54,7 +54,7 @@
 
   <div class='row center'>
     <div>
-      <%= attachment_image_tag @idea, :presentation, height:'500', format:'jpg', fallback:'no_image.png' %>
+      <embed src="<%= attachment_url(@idea, :presentation, format:'pdf#toolbar=0&navpanes=0&scrollbar=0') %>" type="application/pdf" width='1000px' height='800px'></embed>
     </div>
   </div>
 

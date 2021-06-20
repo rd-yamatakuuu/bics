@@ -1,6 +1,6 @@
 class Public::IdeasController < ApplicationController
   
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :show, :edit, :create, :update, :destroy]
 
   def new
     @idea = Idea.new

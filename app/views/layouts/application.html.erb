@@ -17,15 +17,22 @@
   </head>
 
   <body>
-    <header>
-      <%= render 'layouts/header' %>
-    </header>
+  
+    <% unless current_page?(root_path) %>
+      <header>
+        <%= render 'layouts/header' %>
+      </header>
+    <% end %>
+
     <main>
       <%= yield %>
     </main>
-    <footer>
-      <%= render 'layouts/footer' %>
-    </footer>
+    
+    <% unless current_page?(root_path) %>
+      <footer>
+        <%= render 'layouts/footer' %>
+      </footer>
+    <% end %>
   </body>
 
 </html>

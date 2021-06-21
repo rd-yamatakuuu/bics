@@ -54,7 +54,7 @@
 
   <div class='row center'>
     <div>
-      <embed src="<%= attachment_url(@idea, :presentation, format:'pdf#toolbar=0&navpanes=0&scrollbar=0') %>" type="application/pdf" width='1000px' height='800px'></embed>
+      <embed src="<%= attachment_url(@idea, :presentation, format:'pdf') %>" type="application/pdf" width='1000px' height='800px'>
     </div>
   </div>
 
@@ -66,7 +66,7 @@
       <div>
         <% @comments.each do |comment| %>
           <div class='eachcomment'>
-            <span class='comment_tab'><%= attachment_image_tag comment.user, :profile_image, :fill, 50, 50, format:'jpg', fallback:'no_image.png' %></span>
+            <span class='comment_tab'><%= attachment_image_tag comment.user, :profile_image, :fill, 50, 50, format:'jpg', fallback:'no_image.png', size:'50x50' %></span>
             <text class='comment_tab'><%= comment.user.name %></text>
             <text class='comment_tab'><%= comment.created_at.strftime('%Y/%m/%d') %></text>
             <text class='idea-review' data-score='<%=comment.review %>'></text>

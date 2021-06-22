@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :following_user, through: :follower, source: :followed
   has_many :followed_user, through: :followed, source: :follower
   
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  
   validates :name, presence: true
   validates :kana_name, presence: true
   validates :introduction, presence: true
@@ -74,6 +77,16 @@ class User < ApplicationRecord
       @user = User.where('name LIKE ?', "#{words}")
     else
       @user = User.where('name LIKE ?', "%#{words}%")
+    end
+  end
+  
+  #通知
+  def create_notification_follow!(current_user)
+    tmp = Notification.where(['visitor_id = ? and visited_id = ? and action = ?', current_user.id, id, 'follow'])
+    
+    if tmp.blank?
+      notification = current_user.active_notifications.new(visited_id: id, action: 'follow')
+      notification.save if notification.valid?
     end
   end
 

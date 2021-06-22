@@ -4,6 +4,7 @@ class Idea < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :idea_tags, dependent: :destroy
   has_many :tags, through: :idea_tags
+  has_many :notifications, dependent: :destroy
   belongs_to :user
 
   validates :title, presence: true
@@ -76,6 +77,32 @@ class Idea < ApplicationRecord
     else
       @idea = Idea.where('title LIKE ?', "%#{words}%")
     end
+  end
+  
+  #通知モデル
+  def create_notification_by(current_user)
+    notification = current_user.active_notifications.new(idea_id: id, visited_id: user_id, action:'favorite')
+    notification.save if notification.valid?
+  end
+  
+  def create_notification_comment!(current_user, comment_id)
+    tmp_ids = Comment.select(:user_id).where(idea_id: id).where.not(user_id: current_user.id).distinct
+    
+    tmp_ids.each do |tmp_id|
+      save_notification_comment!(current_user, comment_id, tmp_id['user_id'])
+    end
+    
+    save_notification_comment!(current_user, comment_id, user_id) if tmp_ids.blank?
+  end
+  
+  def save_notification_comment!(current_user, comment_id, visited_id)
+    notification = current_user.active_notifications.new(idea_id: id, comment_id: comment_id, visited_id: visited_id, action: 'comment')
+    
+    if notification.visitor_id == notification.visited_id
+      notification.checked == true
+    end
+    
+    notification.save if notification.valid?
   end
 
 end

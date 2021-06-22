@@ -40,6 +40,11 @@ Rails.application.routes.draw do
       end
     end
     resources :rooms, only: [:create, :update, :destroy]
+    resources :notifications, only: [:index] do
+      collection do
+        delete :destroy_all
+      end
+    end
   end
 
   namespace :admin do

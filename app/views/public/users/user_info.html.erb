@@ -53,9 +53,13 @@
 $('.idea-review').empty();
   $('.idea-review').raty({
     readOnly: true,
+    starOn: "<%= asset_path('star-on.ong') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
     score: function(){
       return $(this).attr('data-score');
     },
     path: '/assets/'
   });
 </script>
+

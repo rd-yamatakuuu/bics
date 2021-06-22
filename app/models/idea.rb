@@ -5,12 +5,12 @@ class Idea < ApplicationRecord
   has_many :idea_tags, dependent: :destroy
   has_many :tags, through: :idea_tags
   belongs_to :user
-  
+
   validates :title, presence: true
   validates :content, presence: true, length: {maximum: 500}
 
   attachment :icon
-  attachment :presentation
+  attachment :presentation, extension: 'pdf'
 
   #タグ付け用の関数
   def save_tags(idea_tags)
@@ -68,7 +68,7 @@ class Idea < ApplicationRecord
     y = x.keys
     y
   end
-  
+
   #検索
   def self.looks(references, words)
     if references == 'perfect_match'

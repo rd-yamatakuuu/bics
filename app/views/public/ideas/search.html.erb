@@ -59,7 +59,7 @@
             </div>
             <div class='card_user_box'>
               <div class='card_info_user'>作成者:</div>
-              <div class='card_info_user'><%= link_to idea.user.name, user_path(idea.user_id), class:'text-dark', :style => 'text-decoration:none;' %></div>
+              <div class='card_info_user'><%= link_to idea.user.name, profile_user_path(idea.user_id), class:'text-dark', :style => 'text-decoration:none;' %></div>
               <div class='card_info_user card_info_user_date'><%= idea.created_at.strftime('%Y/%m/%d') %></div>
             </div>
             <div class='card_info_box'>

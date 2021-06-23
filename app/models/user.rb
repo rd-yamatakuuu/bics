@@ -17,21 +17,21 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :followed_user, through: :followed, source: :follower
-  
+
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-  
+
   validates :name, presence: true
   validates :kana_name, presence: true
   validates :introduction, presence: true
   validates :postal_code, presence: true
   validates :address, presence: true
-  
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
   attachment :profile_image
-  
+
   def speciality_check(user, speciality_id)
     user.specialities.include?(speciality_id)
   end
@@ -65,12 +65,12 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
-  
+
   #退会した場合のログイン制御
   def active_for_authentication?
     super && (self.status == false)
   end
-  
+
   #検索
   def self.looks(references, words)
     if references == 'perfect_match'
@@ -79,15 +79,39 @@ class User < ApplicationRecord
       @user = User.where('name LIKE ?', "%#{words}%")
     end
   end
-  
+
   #通知
   def create_notification_follow!(current_user)
     tmp = Notification.where(['visitor_id = ? and visited_id = ? and action = ?', current_user.id, id, 'follow'])
-    
+
     if tmp.blank?
       notification = current_user.active_notifications.new(visited_id: id, action: 'follow')
       notification.save if notification.valid?
     end
+  end
+
+  def create_notification_chat!(current_user, chat_id)
+    tmp_ids = Chat.select(:user_id).where(room_id: id).where.not(user_id: current_user.id).distinct
+
+    tmp_ids.each do |tmp_id|
+      save_notification_chat!(current_user, chat_id, tmp_id['user_id'])
+    end
+    user_id = ChatRoom.where(room_id: id).where.not(user_id: current_user.id)
+
+
+    save_notification_chat!(current_user, chat_id, user_id) if tmp_ids.blank?
+    byebug
+
+  end
+
+  def save_notification_chat!(current_user, chat_id, visited_id)
+    notification = current_user.active_notifications.new(chat_id: chat_id, visited_id: visited_id, action: 'chat')
+
+    if notification.visitor_id == notification.visited_id
+      notification.checked == true
+    end
+
+    notification.save if notification.valid?
   end
 
 end

@@ -21,20 +21,10 @@ class Public::ChatsController < ApplicationController
   end
 
   def create
-    
-    @tmp_room = ChatRoom.find_by(user_id: current_user.id)
-    # @another_room = ChatRoom.where(room_id: @tmp_room.room_id).where.not(user_id: current_user.id)
-    @another_room = ChatRoom.find_by(room_id: @tmp_room.room_id, user_id: !current_user.id)
-    @another_room2 = ChatRoom.find_by(room_id: @tmp_room.room_id, user_id: current_user.id)
-    @room3 = ChatRoom.find_by(room_id: @tmp_room.room_id)
-    @room4 = ChatRoom.where(room_id: @tmp_room.room_id).where.not(user_id: current_user.id)
-    @room5 = ChatRoom.where(room_id: @tmp_room.room_id)
-    @room6 = @room5.find_by(user_id: !current_user.id)
-    @room7 = @room5.find_by(user_id: current_user.id)
-    
     @chat = current_user.chats.new(chat_params)
+    @room = @chat.room
     @chat.save
-    @chat.user.create_notification_chat!(current_user, @chat.id)
+    @room.create_notification_chat!(current_user, @chat.id)
     redirect_to request.referer
   end
 

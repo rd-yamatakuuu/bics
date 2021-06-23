@@ -91,7 +91,7 @@ class Idea < ApplicationRecord
     tmp_ids.each do |tmp_id|
       save_notification_comment!(current_user, comment_id, tmp_id['user_id'])
     end
-    
+
     save_notification_comment!(current_user, comment_id, user_id) if tmp_ids.blank?
   end
 

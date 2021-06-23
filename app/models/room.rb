@@ -7,9 +7,10 @@ class Room < ApplicationRecord
 
   def create_notification_chat!(current_user, chat_id)
 
-    tmp_ids = ChatRoom.select(:user_id).where(room_id: id).where.not(user_id: current_user.id).distinct
-    tmp_ids.each do |tmp_id|
-      save_notification_chat!(current_user, chat_id, tmp_id['user_id'])
+    visited_datas = ChatRoom.select(:user_id).where(room_id: id).where.not(user_id: current_user.id).distinct
+    
+    visited_datas.each do |visited_data|
+      save_notification_chat!(current_user, chat_id, visited_data.user_id)
     end
 
     #save_notification_chat!(current_user, chat_id, user_id) if tmp_ids.blank?
@@ -22,7 +23,7 @@ class Room < ApplicationRecord
     if notification.visitor_id == notification.visited_id
       notification.checked = true
     end
-    notification.save if notification.valid?
+    notification.save
   end
 
 end

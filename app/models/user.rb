@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :kana_name, presence: true
-  validates :introduction, presence: true
+  validates :introduction, presence: true, length: {maximum: 100}
   validates :postal_code, presence: true
   validates :address, presence: true
 

@@ -1,10 +1,10 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <h1>
         <%= @idea.title %>
-        <% if @idea.user == current_user %>
+        <% if @idea.user == current_user %><br>
           ( <%= link_to "Edit", edit_idea_path(@idea), class: "btn btn-dark" %>
           <%= link_to 'Destroy', idea_path(@idea), method: :delete, class:'btn btn-danger', data: {confirm: 'Are you sure?'} %>
           )

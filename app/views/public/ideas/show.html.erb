@@ -25,7 +25,7 @@
             <% end %>
           <% end %>
         </text>
-        <text class='favorite<%= @idea.id %> name_tag_list h5'>
+        <text class='favorite_<%= @idea.id %> name_tag_list h5'>
           <%= render 'public/favorites/favorite', idea: @idea %>
         </text>
         <% if @tag_list.empty? %>

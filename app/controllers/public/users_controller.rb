@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
-  
+
   before_action :authenticate_user!, except: [:index]
+  before_action :ensure_corrent_user, only: [:show, :edit, :update, :unsubscribe, :withdraw]
 
   def index
     @ideas = current_user.ideas
@@ -44,11 +45,11 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   def unsubscribe
     @user = User.find(params[:id])
-  end 
-  
+  end
+
   def withdraw
     @user = User.find(params[:id])
     @user.update(status: true)
@@ -62,4 +63,12 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :kana_name, :email, :introduction, :profile_image, :postal_code, :address)
   end
+
+  def ensure_corrent_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_info_user_path(@user)
+    end
+  end
+
 end

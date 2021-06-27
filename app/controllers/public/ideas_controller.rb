@@ -1,6 +1,7 @@
 class Public::IdeasController < ApplicationController
-  
+
   before_action :authenticate_user!, only: [:new, :show, :edit, :create, :update, :destroy]
+  before_action :ensure_corrent_user, only: [:edit, :update]
 
   def new
     @idea = Idea.new
@@ -73,6 +74,13 @@ class Public::IdeasController < ApplicationController
 
   def idea_params
     params.require(:idea).permit(:title, :content, :icon, :presentation)
+  end
+
+  def ensure_corrent_user
+    @idea = Idea.find(params[:id])
+    unless @idea.user == current_user
+      redirect_to search_path
+    end
   end
 
 end

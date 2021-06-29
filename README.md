@@ -23,9 +23,12 @@
 * 評価の分析をする．
 
 ## 設計書
-* [ER図] (https://app.diagrams.net/#G1fweCNIEgp75HqchsSKvkhqD-F7Rt4nue）
-* [テーブル定義書] (https://docs.google.com/spreadsheets/d/1DCHAojm2lCLqVCjTHAQ0wnqqGUdRPK_I/edit#gid=279571265）
-* [詳細設計書] (https://docs.google.com/spreadsheets/d/1tjIv2EjfSR_yvgKTpLCSU_c7eMvEd-DO/edit#gid=1335310576）
+* [ER図]
+  (https://app.diagrams.net/#G1fweCNIEgp75HqchsSKvkhqD-F7Rt4nue）
+* [テーブル定義書]
+  (https://docs.google.com/spreadsheets/d/1DCHAojm2lCLqVCjTHAQ0wnqqGUdRPK_I/edit#gid=279571265）
+* [詳細設計書]
+  (https://docs.google.com/spreadsheets/d/1tjIv2EjfSR_yvgKTpLCSU_c7eMvEd-DO/edit#gid=1335310576）
 
 ## チャレンジ要素一覧
 [リンク](https://docs.google.com/spreadsheets/d/14_Bv-wCRQDal8ZXWiPk_72ux97CbcR9AQJ0VbMBMBfw/edit#gid=0)
